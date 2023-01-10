@@ -11,18 +11,24 @@ db.once('open', function() {
 
 
 const Expense = mongoose.model('Expense', mongoose.Schema({
-  title: String,
-  size: String
+  title: { type: String, required: true },
+  category: { type: String, required: true },
+  type: { type: String, required: true },
+  due_date: { type: Date, required: true },
+  pay_period: { type: String, required: true },
+  amount: { type: Number, required: true },
+  logo: {type: String}
 }));
 const User = mongoose.model('User', mongoose.Schema({
-  name: String,
-  income: Number
+  name: { type: String, required: true }, //username
+  monthly_income: { type: Number, required: true }, //user has to calculate if salary
+  pay_period: { type: String, required: true }, //bi-weekly
+  total_expenses: { type: Number, required: true }
 }));
 const Tests = mongoose.model('Tests', mongoose.Schema({
-  name: String,
-  income: Number
+  name: {type: String}, //test
 }));
 
-module.exports.tests = Tests;
 module.exports.users = User;
 module.exports.expenses = Expense;
+module.exports.tests = Tests;

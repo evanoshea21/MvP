@@ -2,7 +2,6 @@ const db = require('./db.js');
 
 module.exports = {
   testModelDB: function() {
-    console.log('testModelDB');
 
     return new Promise((resolve,reject) => {
       db.tests.find()
