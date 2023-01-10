@@ -1,7 +1,19 @@
-const db = require('./db');
+const db = require('./db.js');
 
 module.exports = {
-  testModel: function() {
-    console.log('testModel');
-  }
+  testModelDB: function() {
+    console.log('testModelDB');
+
+    return new Promise((resolve,reject) => {
+      db.tests.find()
+      .then((data) => {
+        resolve(data);
+      })
+      .catch(err => {
+        console.log('error in DB', err);
+        reject(err);
+      })
+    })
+    },
+
 }

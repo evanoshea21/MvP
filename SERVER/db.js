@@ -11,8 +11,18 @@ db.once('open', function() {
 
 
 const Expense = mongoose.model('Expense', mongoose.Schema({
-  name: 'string',
-  size: 'string'
+  title: String,
+  size: String
+}));
+const User = mongoose.model('User', mongoose.Schema({
+  name: String,
+  income: Number
+}));
+const Tests = mongoose.model('Tests', mongoose.Schema({
+  name: String,
+  income: Number
 }));
 
-module.exports.db = Expense;
+module.exports.tests = Tests;
+module.exports.users = User;
+module.exports.expenses = Expense;
