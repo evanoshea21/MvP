@@ -5,7 +5,10 @@ import styled, {createGlobalStyle, ThemeProvider} from 'styled-components';
 
 const APP = () => {
   return (
-    <div>APP</div>
+    <div>
+      {/* PUT YOUR APP HERE*/}
+
+    </div>
   )
 };
 
