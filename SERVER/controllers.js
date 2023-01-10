@@ -2,8 +2,8 @@ const models = require('./models.js');
 
 module.exports = {
 
-  getExpensesBySort: function(req,res) {
-    models.getExpensesBySort(req.body.username, req.body.sort)
+  getExpensesByUserSort: function(req,res) {
+    models.getExpensesByUserSort(req.body.username, req.body.sort)
     .then(response => {
       res.status(200).send(response);
     })

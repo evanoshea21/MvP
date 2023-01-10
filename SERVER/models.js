@@ -1,7 +1,7 @@
 const db = require('./db.js');
 
 module.exports = {
-  getExpensesBySort: function(username, sort) { //sort (date as)
+  getExpensesByUserSort: function(username, sort) { //sort (date as)
     //handle SORT for insertion below in query
     var sortBy;
     if(sort === 'dateA') {sortBy = {due_date: 1}}
