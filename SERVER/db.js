@@ -11,6 +11,7 @@ db.once('open', function() {
 
 
 const Expense = mongoose.model('Expense', mongoose.Schema({
+  username: { type: String, required: true },
   title: { type: String, required: true },
   category: { type: String, required: true },
   type: { type: String, required: true },
@@ -20,7 +21,7 @@ const Expense = mongoose.model('Expense', mongoose.Schema({
   logo: {type: String}
 }));
 const User = mongoose.model('User', mongoose.Schema({
-  name: { type: String, required: true }, //username
+  username: { type: String, required: true }, //username
   monthly_income: { type: Number, required: true }, //user has to calculate if salary
   pay_period: { type: String, required: true }, //bi-weekly
   total_expenses: { type: Number, required: true }
