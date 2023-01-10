@@ -15,7 +15,7 @@ const Expense = mongoose.model('Expense', mongoose.Schema({
   title: { type: String, required: true },
   category: { type: String, required: true },
   type: { type: String, required: true },
-  due_date: { type: Date, required: true },
+  due_date: { type: Number, required: true },
   pay_period: { type: String, required: true },
   amount: { type: Number, required: true },
   logo: {type: String}
@@ -24,7 +24,7 @@ const User = mongoose.model('User', mongoose.Schema({
   username: { type: String, required: true }, //username
   monthly_income: { type: Number, required: true }, //user has to calculate if salary
   pay_period: { type: String, required: true }, //bi-weekly
-  total_expenses: { type: Number, required: true }
+  total_expenses: { type: Number }
 }));
 const Tests = mongoose.model('Tests', mongoose.Schema({
   name: {type: String}, //test
