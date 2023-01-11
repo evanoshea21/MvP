@@ -25,7 +25,7 @@ const APP = () => {
   }, [modalStyle])
 
   const getAndSetExpenses = (username, sort) => {
-    console.log('username sort before call1', username, sort);//getting it?
+    console.log('username sort before call1', username, sort);//getting it?//
 
     const url = `${process.env.URL}:${process.env.PORT}/expenses`;
     console.log('url is ', url);

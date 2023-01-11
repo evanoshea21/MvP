@@ -7,9 +7,9 @@ const UserHeader = ({users, currentUser, setUser, addUser}) => {
   return (
     <div className='user-header'>
       <div className='user-info'>
-        <div className='info-buttons'>
-          <span>User Info</span>
-          <div>
+        <div className='user-head'>
+          <h1 className='h1'>User Info</h1>
+          <div className='user-buttons'>
             <button>New User</button>
             <select>
               <option>Select User</option>

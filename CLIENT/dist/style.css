@@ -5,9 +5,17 @@ body {
 }
 button,select {
   padding: 10px;
-  /* margin: 10px; */
+  margin: 0 5px;
   /* font-size: 1.2em; */
   background-color: rgb(230, 245, 243);
+}
+
+h1, .h1 {
+  font-size: 2rem;
+  background-color: aqua;
+  padding-left: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 /* select {
 
@@ -53,22 +61,26 @@ button,select {
   width: 40%;
   padding: 20px;
 }
-.info-buttons {
+.user-head {
   background-color: rgb(229, 205, 169);
   display: flex;
-  padding: 10px;
-  font-size: 1.6em;
+  /* padding: 10px; */
+  /* font-size: 1.6em; */
   justify-content: space-between;
 }
+.user-buttons {
+  display: flex;
+  align-items: center;
+}
 .info-box {
-  height: 90%;
+  height: 80%;
   display: flex;
 }
 .info-left,.info-right {
   font-size: 1.4em;
   background-color: aquamarine;
   display: flex;
-  padding: 30px;
+  padding: 20px;
   flex-direction: column;
   justify-content: space-around;
 }
@@ -95,6 +107,17 @@ button,select {
 
 /* EXPENSES */
 
+.expense-head {
+  /* background-color: #888; */
+  display: flex;
+  justify-content: space-between;
+}
+.expense-head button, .expense-head select {
+  /* background-color: aqua; */
+  height: 50%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
 .expense-item { /*full entry*/
   /* background-color: rgb(40, 71, 71); */
   position: relative;
@@ -142,15 +165,31 @@ button,select {
   font-size: 1.1em;
   text-align: center;
 }
-.expense-item button {
+.fa-x {
+  cursor: pointer;
+  color: rgba(243, 36, 36, 0.901);
+  font-size: 1.3em;
   z-index: 10;
   position: absolute;
-  transform: translate(-100%, -130%);
+  transform: translate(-100%, -100%);
   top: 100%;
-  left: 100%;
+  left: 97%;
   height: 60%;
   margin: auto;
   border-right: none;
+}
+.fa-pencil {
+  cursor: pointer;
+  color: rgba(77, 194, 77, 0.958);
+  font-size: 1.3em;
+  z-index: 10;
+  position: absolute;
+  transform: translate(-100%, -100%);
+  top: 60%;
+  left: 4%;
+  /* height: 60%; */
+  /* margin: auto; */
+  /* border-right: none; */
 }
 
 /* MODAL */

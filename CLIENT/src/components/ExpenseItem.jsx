@@ -23,7 +23,9 @@ const ExpenseItem = (props) => {
         {/* <span>AMOUNT</span> */}
         <span>$ 12</span>
       </div>
-        <button>Delete</button>
+        {/* <button>Delete</button> */}
+        <i class="fa-solid fa-x"></i>
+        <i class="fa-solid fa-pencil"></i>
     </div>
   )
 }
