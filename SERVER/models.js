@@ -12,7 +12,6 @@ module.exports = {
     else {sortBy = {}}
     // console.log('SORTBY ', sortBy);
     var todaysDate = new Date().getDate();
-    // console.log('TodayDate ',todaysDate);
 
     return new Promise((resolve,reject) => {
       db.expenses.find({username}).sort(sortBy).exec((err, results) => {
@@ -21,7 +20,6 @@ module.exports = {
 
           for(var i = 0; i < results.length; i++) {
             if(results[i].due_date >= todaysDate) {
-              console.log('FIRST date next', results[i]);
               var dateNextArr = results.slice(i).concat(results.slice(0,i));
               resolve(dateNextArr);
               return;

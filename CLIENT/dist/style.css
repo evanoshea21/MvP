@@ -1,7 +1,17 @@
 
-h1 {
+body {
   background-color: lightblue;
+  font-family: 'Roboto', sans-serif;
 }
+button,select {
+  padding: 10px;
+  /* margin: 10px; */
+  /* font-size: 1.2em; */
+  background-color: rgb(230, 245, 243);
+}
+/* select {
+
+} */
 
 /* SECTIONS */
 
@@ -13,18 +23,72 @@ h1 {
 }
 .header {
   background-color: antiquewhite;
-  height: 100px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 4em;
+
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .user-header {
   background-color:azure;
-  height: 350px;
+  min-height: fit-content;
+  display: flex;
 }
 .expenses {
   background-color:bisque;
-  width: 60%;
+  width: 70%;
 
 }
 .finance-sidebar {
   background-color:aquamarine;
   width: 30%;
+}
+
+/* USER-HEADER */
+
+.user-info {
+  background-color: rgb(105, 162, 211);
+  width: 40%;
+  padding: 20px;
+}
+.info-buttons {
+  background-color: rgb(229, 205, 169);
+  display: flex;
+  padding: 10px;
+  font-size: 1.6em;
+  justify-content: space-between;
+}
+.info-box {
+  height: 90%;
+  display: flex;
+}
+.info-left,.info-right {
+  font-size: 1.4em;
+  background-color: aquamarine;
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.info-right {
+  background-color: aqua;
+}
+.surplus {
+  background-color: rgb(148, 116, 178);
+  font-size: 1.5em;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.surplus span{
+  padding: 15px 0;
+}
+.user-visual {
+  background-color: aquamarine;
+  width: 40%;
+  /* padding: 10px auto; */
 }

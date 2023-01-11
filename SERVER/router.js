@@ -4,7 +4,7 @@ const controllers = require('./controllers.js');
 
 // router.get('/find', controllers.findById);
 
-router.get('/expenses', controllers.getExpensesByUserSort);
+router.post('/expenses', controllers.getExpensesByUserSort);
 
 router.post('/insert/expense', controllers.insertExpense);
 router.post('/insert/user', controllers.insertUser);

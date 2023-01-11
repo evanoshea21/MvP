@@ -3,6 +3,7 @@ const models = require('./models.js');
 module.exports = {
 
   getExpensesByUserSort: function(req,res) {
+    // console.log('controllers BODY', req.body);
     models.getExpensesByUserSort(req.body.username, req.body.sort)
     .then(response => {
       res.status(200).send(response);
