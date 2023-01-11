@@ -13,12 +13,16 @@ const APP = () => {
   const [username, setUsername] = useState('evan');
   const [expenses, setExpenses] = useState([]);
   const [sort, setSort] = useState('dateNext');
+  const [modalStyle, setModalStyle] = useState({display: 'block'});
 
   React.useEffect(() => { //get and set expenses
     if(username && sort) {
       getAndSetExpenses(username, sort);
     }
   }, [username, sort])
+  React.useEffect(() => { //get and set expenses
+    console.log('new modal style', modalStyle);
+  }, [modalStyle])
 
   const getAndSetExpenses = (username, sort) => {
     console.log('username sort before call1', username, sort);//getting it?
@@ -51,8 +55,9 @@ const APP = () => {
       <div id='expense-box'>
         <Expenses />
         <FinanceSidebar />
-      </div>
-      <Modal type={['new-user', 'add-expense', 'new-savings']}/>
+      </div >
+      <Modal style={modalStyle} setModalStyle={setModalStyle} type={'new-user'}/>
+      {/* new-user, add-expense, new-savings */}
     </div>
   )
 };
