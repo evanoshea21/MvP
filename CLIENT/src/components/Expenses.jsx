@@ -12,9 +12,11 @@ const Expenses = (props) => {
           <div>DUE DATE</div>
           <div>AMOUNT</div>
       </div>
+      <div className='expense-grid'>
       <ExpenseItem />
       <ExpenseItem />
       <ExpenseItem />
+      </div>
     </div>
   )
 }

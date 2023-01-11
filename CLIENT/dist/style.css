@@ -101,11 +101,11 @@ button,select {
   display: flex;
   justify-content: space-around;
   height: 100px;
-  margin: 10px 0;
+  margin: 0 0;
   border-bottom: solid grey 1px;
 }
-.expesnse-item:nth-child(2n) {
-  background-color: rgb(188, 189, 189);
+.expense-item:nth-child(2n) {
+  background-color: rgb(229, 205, 169);
 }
 
 .expense-item div {
@@ -143,6 +143,7 @@ button,select {
   text-align: center;
 }
 .expense-item button {
+  z-index: 10;
   position: absolute;
   transform: translate(-100%, -130%);
   top: 100%;
