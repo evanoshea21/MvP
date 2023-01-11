@@ -15,7 +15,7 @@ const APP = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [sort, setSort] = useState('dateNext');
-  const [modalStyle, setModalStyle] = useState({display: 'none'});
+  const [modal, setModal] = useState({style: {display: 'none'}, type: 'add-user'});
 
   React.useEffect(() => { //get and set expenses
     if(username && sort) {
@@ -81,12 +81,12 @@ const APP = () => {
     <div>
       {/* PUT YOUR APP HERE*/}
       <Header />
-      <UserHeader userData={userData} allUsers={allUsers} setUser={setUsername}/>
+      <UserHeader setModal={setModal} userData={userData} allUsers={allUsers} setUser={setUsername}/>
       <div id='expense-box'>
-        <Expenses expenses={expenses}/>
-        <FinanceSidebar />
+        <Expenses expenses={expenses} setModal={setModal}/>
+        <FinanceSidebar setModal={setModal}/>
       </div >
-      <Modal style={modalStyle} setModalStyle={setModalStyle} type={'new-user'}/>
+      <Modal username={username} style={modal.style} setModal={setModal} formType={modal.type}/>
       {/* new-user, add-expense, new-savings */}
     </div>
   )

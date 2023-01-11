@@ -1,13 +1,13 @@
 import React from 'react'
 import ExpenseItem from './ExpenseItem.jsx'
 
-const Expenses = ({expenses}) => {
+const Expenses = ({setModal, expenses}) => {
   return (
     <div className='expenses'>
       <div className='expense-head'>
         <div className='expense-head'>
           <h1 className='h1'>Expenses</h1>
-          <button>Add Expense</button>
+          <button onClick={e => {e.preventDefault(); setModal({style:{display: 'block'}, type:'add-expense'})}}>Add Expense</button>
         </div>
           {/* <div className='expense-buttons'> */}
             <select>

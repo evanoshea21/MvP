@@ -1,11 +1,12 @@
 import React from 'react'
 import PieChart from './PieChart.jsx';
 
-const UserHeader = ({userData, allUsers, setUser}) => {
+const UserHeader = ({userData, allUsers, setUser, setModal}) => {
 
   const changeUser = (e) => {
-    console.log('e in changeUser', e.target.value); //works
-    setUser(e.target.value);
+    var username = e.target.value === "Select User" ? 'Sample User' : e.target.value;
+    console.log('e in changeUser', username); //works
+    setUser(username);
   };
 
 
@@ -15,11 +16,13 @@ const UserHeader = ({userData, allUsers, setUser}) => {
         <div className='user-head'>
           <h1 className='h1'>User Info</h1>
           <div className='user-buttons'>
-            <button>New User</button>
+            <button onClick={e => {e.preventDefault(); setModal({style: {display: 'block'}, type: 'add-user'})}}>New User</button>
             <select onChange={e=> {e.preventDefault(); changeUser(e);}}>
               <option>Select User</option>
               {allUsers.map(user => {
-                return <option key={user._id}>{user.username}</option>
+                if(user.username !== 'Sample User') {
+                  return <option key={user._id}>{user.username}</option>
+                }
               })}
             </select>
           </div>

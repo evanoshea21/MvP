@@ -214,7 +214,7 @@ h1, .h1 {
 }
 .modal-content {
   background-color: #fefefe;
-  margin: 150px auto; /* 15% from the top and centered */
+  margin: 100px auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 50%; /* Could be more or less, depending on screen size */

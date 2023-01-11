@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FinanceSidebar = () => {
+const FinanceSidebar = ({setModal}) => {
   return (
     <div className='finance-sidebar'>
       <div className='finance-tips'>
@@ -9,7 +9,7 @@ const FinanceSidebar = () => {
       </div>
       <div className='finance-utils'>
         <h2>Utilities</h2>
-        <button>Add Finance Goal</button>
+        <button onClick={e => {e.preventDefault(); setModal({style:{display:'block'}, type:'add-goal'})}}>Add Finance Goal</button>
       </div>
     </div>
   )
