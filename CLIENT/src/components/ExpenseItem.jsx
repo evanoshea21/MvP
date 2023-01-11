@@ -1,31 +1,32 @@
 import React from 'react'
 
-const ExpenseItem = (props) => {
+const ExpenseItem = ({e}) => {
+
   return (
     <div className='expense-item'>
       <div>
         {/* <span>TITLE</span> */}
-        <span>Netflix</span>
+        <span>{e.title}</span>
       </div>
       <div>
         {/* <span>CATEGORY</span> */}
-        <span>Subscription</span>
+        <span>{e.category}</span>
       </div>
       <div>
         {/* <span>TYPE</span> */}
-        <span>Discretionary</span>
+        <span>{e.type}</span>
       </div>
       <div>
         {/* <span>DUE DATE</span> */}
-        <span>18th</span>
+        <span>{e.due_date}</span>
       </div>
       <div>
         {/* <span>AMOUNT</span> */}
-        <span>$ 12</span>
+        <span>$ {e.amount}</span>
       </div>
         {/* <button>Delete</button> */}
-        <i class="fa-solid fa-x"></i>
-        <i class="fa-solid fa-pencil"></i>
+        <i className="fa-solid fa-x"></i>
+        <i className="fa-solid fa-pencil"></i>
     </div>
   )
 }

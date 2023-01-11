@@ -12,6 +12,16 @@ module.exports = {
       res.status(500).send(err);
     })
   },
+  getUser: function(req,res) {
+    // console.log('controllers BODY', req.body);
+    models.getUser(req.body.username)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    })
+  },
   deleteExpenseById: function(req,res) {
     models.deleteExpenseById(req.body.id)
     .then(response => {

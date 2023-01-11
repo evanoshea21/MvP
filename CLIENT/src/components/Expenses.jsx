@@ -1,7 +1,7 @@
 import React from 'react'
 import ExpenseItem from './ExpenseItem.jsx'
 
-const Expenses = (props) => {
+const Expenses = ({expenses}) => {
   return (
     <div className='expenses'>
       <div className='expense-head'>
@@ -27,9 +27,10 @@ const Expenses = (props) => {
           <div>AMOUNT</div>
       </div>
       <div className='expense-grid'>
-      <ExpenseItem />
-      <ExpenseItem />
-      <ExpenseItem />
+      {expenses.map((e, i) => {
+        return <ExpenseItem key={e._id} e={e}/>
+      })}
+
       </div>
     </div>
   )

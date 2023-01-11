@@ -24,6 +24,8 @@ const User = mongoose.model('User', mongoose.Schema({
   username: { type: String, required: true }, //username
   monthly_income: { type: Number, required: true }, //user has to calculate if salary
   pay_period: { type: String, required: true }, //bi-weekly
+  pay_dates: { type: String, required: true }, //bi-weekly has 2 days
+  housing: { type: Number, required: true }, //bi-weekly
   total_expenses: { type: Number }
 }));
 const Tests = mongoose.model('Tests', mongoose.Schema({

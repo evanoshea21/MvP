@@ -1,7 +1,12 @@
 import React from 'react'
 import PieChart from './PieChart.jsx';
 
-const UserHeader = ({users, currentUser, setUser, addUser}) => {
+const UserHeader = ({userData, allUsers, setUser}) => {
+
+  const changeUser = (e) => {
+    console.log('e in changeUser', e.target.value); //works
+    setUser(e.target.value);
+  };
 
 
   return (
@@ -11,10 +16,11 @@ const UserHeader = ({users, currentUser, setUser, addUser}) => {
           <h1 className='h1'>User Info</h1>
           <div className='user-buttons'>
             <button>New User</button>
-            <select>
+            <select onChange={e=> {e.preventDefault(); changeUser(e);}}>
               <option>Select User</option>
-              <option>Evan</option>
-              <option>User2</option>
+              {allUsers.map(user => {
+                return <option key={user._id}>{user.username}</option>
+              })}
             </select>
           </div>
         </div>
@@ -26,10 +32,10 @@ const UserHeader = ({users, currentUser, setUser, addUser}) => {
             <span>Rent</span>
           </div>
           <div className='info-right' style={{width: '50%'}}>
-            <span>Evan</span>
-            <span>$ 3450</span>
-            <span>$ 2160</span>
-            <span>$ 1200</span>
+            <span>{userData.username}</span>
+            <span>$ {userData.monthly_income}</span>
+            <span>$ {userData.total_expenses}</span>
+            <span>$ {userData.housing}</span>
           </div>
         </div>
       </div>

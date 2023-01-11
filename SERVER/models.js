@@ -2,6 +2,7 @@ const db = require('./db.js');
 
 module.exports = {
   getExpensesByUserSort: function(username, sort) { //sort (date as)
+    console.log('getting expenses for user ', username);
     //handle SORT for insertion below in query
     var sortBy;
     if(sort === 'dateA') {sortBy = {due_date: 1}}
@@ -15,8 +16,10 @@ module.exports = {
 
     return new Promise((resolve,reject) => {
       db.expenses.find({username}).sort(sortBy).exec((err, results) => {
+        console.log('user ', username, 'got to query...');
+        console.log('user ', username, 'errResults', err, results);
         if(err) { reject(err); return}
-        if(sort === 'dateNext') {
+        if(sort === 'dateNext' && results.length) {
 
           for(var i = 0; i < results.length; i++) {
             if(results[i].due_date >= todaysDate) {
@@ -29,6 +32,17 @@ module.exports = {
           resolve(results);
         }
       }); //end of find, sort, EXEC
+    })//promise end
+    },
+  getUser: function(username) {
+    console.log('USERNAME for user find', username);
+    var usernameObj = username === 'all' ? {} : {username};
+    return new Promise((resolve,reject) => {
+      db.users.find(usernameObj).exec((err, results) => {
+        if(err) { reject(err); return}
+        resolve(results);
+        return;
+      }); //end of find, EXEC
     })//promise end
     },
 

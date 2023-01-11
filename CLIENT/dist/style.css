@@ -18,6 +18,10 @@ h1, .h1 {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+#header, #header h1 {
+  font-size: 4rem;
+}
 /* select {
 
 } */
@@ -30,7 +34,7 @@ h1, .h1 {
   display: flex;
   justify-content: space-around;
 }
-.header {
+#header {
   background-color: antiquewhite;
   font-family: 'Roboto', sans-serif;
   font-size: 2em;
