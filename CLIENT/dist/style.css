@@ -1,0 +1,30 @@
+
+h1 {
+  background-color: lightblue;
+}
+
+/* SECTIONS */
+
+#expense-box {
+  background-color: rgb(230, 182, 125);
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.header {
+  background-color: antiquewhite;
+  height: 100px;
+}
+.user-header {
+  background-color:azure;
+  height: 350px;
+}
+.expenses {
+  background-color:bisque;
+  width: 60%;
+
+}
+.finance-sidebar {
+  background-color:aquamarine;
+  width: 30%;
+}
