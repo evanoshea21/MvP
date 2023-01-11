@@ -37,18 +37,34 @@ import styled from "styled-components";
 `;
   //END of styled components
 
-const Modal = ({type, style, setModalStyle}) => {
-  // var type = formType === 'addUser' ? 'Question' : 'Answer';
+const Modal = ({type, style, setModalStyle}) => { //type new-user, add-expense, new-savings
   var addOnKey = ['4','5','6','9'];
-  var inputFields = [
-    <input type='text' name='body' key={39 + addOnKey[0]} placeholder={`${type} body`} required={true}></input>,
-    <input type='text' name='name' key={28 + addOnKey[1]} placeholder='name for username'></input>,
-    <input type='email' name='email' key={10 + addOnKey[2]} placeholder='myemail@email.com'></input>
-  ];
-  // if(formType === 'addA') {
-  //   inputFields.push(<div key={5768} className='label1'>Separate images by Comma-space</div>);
-  //   inputFields.push(<textarea rows={4} name='photos' key={productID + addOnKey[3]} placeholder='url of photos, new line per photo'></textarea>)
-  // }
+  var inputFields = [];
+  if(type === 'next-user') {
+    inputFields = [
+      <input type='text' name='body' key={39 + addOnKey[0]} placeholder={`${type} body`} required={true}></input>,
+      <input type='text' name='name' key={28 + addOnKey[1]} placeholder='name for username'></input>,
+      <input type='email' name='email' key={10 + addOnKey[2]} placeholder='myemail@email.com'></input>
+    ];
+  } else if(type === 'add-expense') {
+    inputFields = [
+      <input type='text' name='body' key={39 + addOnKey[0]} placeholder={`${type} body`} required={true}></input>,
+      <input type='text' name='name' key={28 + addOnKey[1]} placeholder='name for username'></input>,
+      <input type='email' name='email' key={10 + addOnKey[2]} placeholder='myemail@email.com'></input>
+    ];
+  } else if(type === 'new-savings') {
+    inputFields = [
+      <input type='text' name='body' key={39 + addOnKey[0]} placeholder={`${type} body`} required={true}></input>,
+      <input type='text' name='name' key={28 + addOnKey[1]} placeholder='name for username'></input>,
+      <input type='email' name='email' key={10 + addOnKey[2]} placeholder='myemail@email.com'></input>
+    ];
+  } else {
+    inputFields = [
+      <input type='text' name='body' key={39 + addOnKey[0]} placeholder={`${type} body`} required={true}></input>,
+      <input type='text' name='name' key={28 + addOnKey[1]} placeholder='name for username'></input>,
+      <input type='email' name='email' key={10 + addOnKey[2]} placeholder='myemail@email.com'></input>
+    ];
+  }
 
 
   const sendData = () => {
