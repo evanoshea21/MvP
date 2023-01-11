@@ -13,7 +13,7 @@ const APP = () => {
   const [username, setUsername] = useState('evan');
   const [expenses, setExpenses] = useState([]);
   const [sort, setSort] = useState('dateNext');
-  const [modalStyle, setModalStyle] = useState({display: 'block'});
+  const [modalStyle, setModalStyle] = useState({display: 'none'});
 
   React.useEffect(() => { //get and set expenses
     if(username && sort) {
