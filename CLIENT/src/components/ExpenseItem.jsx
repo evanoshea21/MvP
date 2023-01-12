@@ -22,20 +22,23 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
     obj.amount = $('.amount').val();
     console.log('PATCH OBJ', obj);
 
-    // title: 'renting',
-    // category: 'Housing',
-    // type: 'Essential',
-    // due_date: 4,
-    // pay_period: 'monthly',
-    // amount: 10000,
+    //axios
+    // first store previous AMOUNT
+    // then patch
+    // then updateTotalExpense with new AMOUNT minus OLD minus = difference, + positive = true
+    // then setAndGet new Expenses
 
-    // axios({method: 'patch', url, data: {
-    //   id: e._id
-    // }})
+    axios({method: 'patch', url, data: {
+      id: e._id
+    }})
    };
 
-  const updateTotalExpense = (difference) => {
-    var difference = Math.round((Number(difference) - (2 * Number(difference)))*100) / 100; //get negative version
+  const updateTotalExpense = (difference, positive) => {
+    if(positive) {
+      var difference = Math.round((Number(difference)*100)) / 100; //get negative version
+    } else {
+      var difference = Math.round((Number(difference) - (2 * Number(difference)))*100) / 100; //get negative version
+    }
     console.log('DIFFERENCE = ', difference);
     var url = `${process.env.URL}:${process.env.PORT}/user/${e.username}`
     axios({method: 'post', url, data: {deltaExpense: difference}})
@@ -68,27 +71,27 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
       <div>
 
         {/* <span>TITLE</span> */}
-        <input className='title' type='text' name='title' value={e.title} style={editingStyle[0]}/>
+        <input key={15} className='title' type='text' name='title' value={e.title} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.title}</span>
       </div>
       <div>
         {/* <span>CATEGORY</span> */}
-        <input className='category' type='text' name='category' value={e.category} style={editingStyle[0]}/>
+        <input key={14} className='category' type='text' name='category' value={e.category} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.category}</span>
       </div>
       <div>
         {/* <span>TYPE</span> */}
-        <input className='type' type='text' name='type' value={e.type} style={editingStyle[0]}/>
+        <input key={13} className='type' type='text' name='type' value={e.type} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.type}</span>
       </div>
       <div>
         {/* <span>DUE DATE</span> */}
-        <input className='due_date' type='text' name='due_date' value={e.due_date} style={editingStyle[0]}/>
+        <input key={12} className='due_date' type='text' name='due_date' value={e.due_date} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.due_date}</span>
       </div>
       <div>
         {/* <span>AMOUNT</span> */}
-        <input className='amount' type='text' name='amount' value={e.amount} style={editingStyle[0]}/>
+        <input key={11} className='amount' type='text' name='amount' value={e.amount} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>$ {e.amount}</span>
       </div>
         {/* <button>Delete</button> */}
