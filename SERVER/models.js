@@ -112,5 +112,14 @@ module.exports = {
 
       })//promise
     },
+    updateExpenseByID: function(id, data) {
+      console.log('update user id', id, ' with data ', data);
+      return new Promise((resolve, reject) => {
+        db.expenses.findOneAndUpdate({_id:id}, data).exec((err, response) => {
+          err ? reject(err) : resolve(`updated expense successfully..?:\n${response}`)
+        });
+
+      })//promise
+    }
 
 }

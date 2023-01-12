@@ -63,7 +63,7 @@ const APP = () => {
     expenses.forEach(e => {
       obj[e.category] += e.amount;
     })
-    console.log('category Totals..', Object.values(obj));
+    // console.log('category Totals..', Object.values(obj));
     setCategoryTotal(obj);
     //go through ALL expenses
   };

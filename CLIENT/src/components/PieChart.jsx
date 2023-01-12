@@ -30,11 +30,11 @@ const PieChart = ({categoryTotal}) => {
   })
 
   React.useEffect(() => {
-    console.log('CAT TOTAL change in PIE', categoryTotal);
+    // console.log('CAT TOTAL change in PIE', categoryTotal);
     var catKeys = Object.keys(categoryTotal);
     var catVals = Object.values(categoryTotal);
-    console.log('Cat Keys', catKeys);
-    console.log('Cat Vals', catVals);
+    // console.log('Cat Keys', catKeys);
+    // console.log('Cat Vals', catVals);
     setUserData({
       labels: catKeys,
       datasets: [{

@@ -86,14 +86,14 @@ module.exports = {
   },
   updateExpenseByID: function(req,res) {
     console.log('update Expense id/body', req.params.id, req.body);
-    res.send('yupp');
-    // models.updateUserByUsername(req.params.username, req.body)
-    // .then(response => {
-    //   res.status(201).send(response);
-    // })
-    // .catch(err => {
-    //   res.status(500).send(err);
-    // })
+    // res.send('yupp');
+    models.updateExpenseByID(req.params.id, req.body)
+    .then(response => {
+      res.status(201).send(response);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    })
   }
 
 

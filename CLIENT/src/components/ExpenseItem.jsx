@@ -30,8 +30,10 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
       var oldAmount = e.amount;
       axios({method: 'post', url, data: obj})
       .then(res => {
-        // updateTotalExpense(Number(oldAmount) - Number(obj.amount), true);
-        // getSetExpenses();
+        updateTotalExpense(Number(obj.amount) - Number(oldAmount), true);
+      })
+      .catch(err => {
+        console.error(`error updating`);
       })
     }
    };
@@ -49,6 +51,9 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
       console.log('response delta', res);
       if(!positive) {
         deleteById();
+      } else {
+        getSetExpenses(e.username, sort);
+        getSetUserData(e.username);
       }
     })
     .catch(err => {
