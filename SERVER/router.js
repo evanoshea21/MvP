@@ -11,6 +11,7 @@ router.post('/insert/expense', controllers.insertExpense);
 router.post('/insert/user', controllers.insertUser);
 
 router.post('/user/:username', controllers.updateUserByUsername);
+router.post('/expense/:id', controllers.updateExpenseByID);
 
 router.delete('/expense/:id', controllers.deleteExpenseById);
 router.delete('/user', controllers.deleteUserById);

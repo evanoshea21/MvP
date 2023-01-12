@@ -83,6 +83,17 @@ module.exports = {
     .catch(err => {
       res.status(500).send(err);
     })
+  },
+  updateExpenseByID: function(req,res) {
+    console.log('update Expense id/body', req.params.id, req.body);
+    res.send('yupp');
+    // models.updateUserByUsername(req.params.username, req.body)
+    // .then(response => {
+    //   res.status(201).send(response);
+    // })
+    // .catch(err => {
+    //   res.status(500).send(err);
+    // })
   }
 
 
