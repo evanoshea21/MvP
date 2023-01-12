@@ -5,7 +5,7 @@ const UserHeader = ({categoryTotal, userData, allUsers, setUser, setModal}) => {
 
   const changeUser = (e) => {
     var username = e.target.value === "Select User" ? 'Sample User' : e.target.value;
-    console.log('e in changeUser', username); //works
+    // console.log('e in changeUser', username); //works
     setUser(username);
   };
 

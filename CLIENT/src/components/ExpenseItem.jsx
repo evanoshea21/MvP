@@ -6,17 +6,20 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
   const [editingOn, toggleEditing] = React.useState(false);
   const [editingStyle, setEditingStyle] = React.useState([{display: 'none'},{display: 'block'}]);
 
+  const idTail = e._id.slice(-7) + e._id.slice(0,3);
+  // console.log('idTail', idTail);
+
   const editExpense = () => {
     toggleEditing(!editingOn);
     setEditingStyle([editingStyle[1], editingStyle[0]]);
 
     const url = `${process.env.URL}:${process.env.PORT}/expense/${e._id}`
     var obj = {};
-    obj.title = $('.title').val();
-    obj.category = $('.category').val();
-    obj.type = $('.type').val();
-    obj.due_date = $('.due_date').val();
-    obj.amount = $('.amount').val();
+    obj.title = $(`.title${idTail}`).val();
+    obj.category = $(`.category${idTail}`).val();
+    obj.type = $(`.type${idTail}`).val();
+    obj.due_date = $(`.due_date${idTail}`).val();
+    obj.amount = $(`.amount${idTail}`).val();
     console.log('PATCH OBJ', obj);
 
     //axios
@@ -44,7 +47,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
     } else {
       var difference = Math.round((Number(difference) - (2 * Number(difference)))*100) / 100; //get negative version
     }
-    console.log('DIFFERENCE = ', difference);
+    // console.log('DIFFERENCE = ', difference);
     var url = `${process.env.URL}:${process.env.PORT}/user/${e.username}`
     axios({method: 'post', url, data: {deltaExpense: difference}})
     .then(res => {
@@ -81,27 +84,27 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
       <div>
 
         {/* <span>TITLE</span> */}
-        <input key={15} className='title' type='text' name='title' defaultValue={e.title} style={editingStyle[0]}/>
+        <input key={15} className={`title${idTail}`} type='text' name='title' defaultValue={e.title} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.title}</span>
       </div>
       <div>
         {/* <span>CATEGORY</span> */}
-        <input key={14} className='category' type='text' name='category' defaultValue={e.category} style={editingStyle[0]}/>
+        <input key={14} className={`category${idTail}`} type='text' name='category' defaultValue={e.category} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.category}</span>
       </div>
       <div>
         {/* <span>TYPE</span> */}
-        <input key={13} className='type' type='text' name='type' defaultValue={e.type} style={editingStyle[0]}/>
+        <input key={13} className={`type${idTail}`} type='text' name='type' defaultValue={e.type} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.type}</span>
       </div>
       <div>
         {/* <span>DUE DATE</span> */}
-        <input key={12} className='due_date' type='text' name='due_date' defaultValue={e.due_date} style={editingStyle[0]}/>
+        <input key={12} className={`due_date${idTail}`} type='text' name='due_date' defaultValue={e.due_date} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.due_date}</span>
       </div>
       <div>
         {/* <span>AMOUNT</span> */}
-        <input key={11} className='amount' type='text' name='amount' defaultValue={e.amount} style={editingStyle[0]}/>
+        <input key={11} className={`amount${idTail}`} type='text' name='amount' defaultValue={e.amount} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>$ {e.amount}</span>
       </div>
         {/* <button>Delete</button> */}
