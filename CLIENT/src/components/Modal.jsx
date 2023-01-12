@@ -26,7 +26,7 @@ import styled from "styled-components";
 `;
   //END of styled components
 
-const Modal = ({formType, username, style, setModal}) => { //formType add-user, add-expense, new-savings
+const Modal = ({formType, username, setUsername, style, setModal, getSetAllUsers}) => { //formType add-user, add-expense, new-savings
   console.log('MODAL Type', formType);
   var type;
   if(formType === 'add-user') {type = 'user'}
@@ -37,9 +37,10 @@ const Modal = ({formType, username, style, setModal}) => { //formType add-user, 
     inputFields = [
       <input type='text' name='username' key={39} placeholder={`name`} required={true}></input>,
       <input type='text' name='monthly_income' key={35} placeholder={`monthly income`} required={true}></input>,
-      <input type='text' name='pay-period' key={36} placeholder={`bi-weekly, monthly...`} required={true}></input>,
+      <input type='text' name='pay_period' key={36} placeholder={`bi-weekly, monthly...`} required={true}></input>,
       <input type='text' name='pay_dates' key={37} placeholder={`11,24`} required={true}></input>,
-      <input type='text' name='housing' key={38} placeholder={`Rent/Mortgage Amount in USD`} required={true}></input>
+      <input type='text' name='housing' key={43} placeholder={`Rent/Mortgage Amount in USD`} required={true}></input>,
+      <input type='text' name='rent_due' key={38} placeholder={`Rent/Mortgage Due Date (15, 30, 1, etc)`} required={true}></input>
     ];
   } else if(formType === 'add-expense' || formType === 'add-goal') {
     inputFields = [
@@ -50,16 +51,11 @@ const Modal = ({formType, username, style, setModal}) => { //formType add-user, 
       <input type='text' name='pay-period' key={35} placeholder={`bi-weekly, monthly...`} required={true}></input>,
       <input type='text' name='amount' key={34} placeholder={`Amount in USD`} required={true}></input>
     ];
-  } else if(formType === 'add-goal') {
-    inputFields.push(<input type='text' name='sample' key={50} placeholder={`additional for savings goal..`} required={true}></input>);
+  }
+  if(formType === 'add-goal') {
+    inputFields.push(<input type='text' name='add Financial Goal' key={50} placeholder={`additional for savings goal..`} required={true}></input>);
       // <input type='text' name='sample' key={39} placeholder={`sample0`} required={true}></input>,
       // <input type='text' name='sample' key={28} placeholder='sample'></input>
-  } else {
-    inputFields = [
-      <input type='text' name='body' key={39} placeholder={`${type} body`} required={true}></input>,
-      <input type='text' name='name' key={28} placeholder='name for username'></input>,
-      <input type='email' name='email' key={10} placeholder='myemail@email.com'></input>
-    ];
   }
 
 
@@ -72,18 +68,52 @@ const Modal = ({formType, username, style, setModal}) => { //formType add-user, 
       for (const [key, value] of formData) {
         Object.assign(dataObj, {[key]: value})
       }
+      Object.assign(dataObj, {total_expenses: dataObj.housing})
 
       console.log('dataObj from Modal:\n', dataObj);
       //POST user, expense from dataObj
-      const url = `${process.env.URL}:${process.env.PORT}/insert/${type}`;
-      axios({method: 'post', url: url, data: dataObj})
-      .then((res) => {
-        console.log('res Modal POST response for', type, res);
-      })
-      .catch(err => {
-        alert(`Error Posting ${type}\n\n` + err.response.data);
-        console.error(err);
-      })
+
+      //if add user
+        //POST USER
+          //(after posted setExpenses in username, then call setUserData)
+        //then, POST rent to EXPENSES of "housing" from User
+        //setUsername to user entered
+        //create useEffect[username] -> get all expenses and set expense
+      if(formType === 'add-user') {
+        const url = `${process.env.URL}:${process.env.PORT}/insert/user`;
+        axios({method: 'post', url: url, data: dataObj})
+        .then((res) => {
+          var addRentExpense = {
+            username: dataObj.username,
+            title: 'Rent/Mortgage',
+            category: 'housing',
+            type: 'essential',
+            due_date: dataObj.rent_due,
+            pay_period: "monthly",
+            amount: dataObj.housing,
+          };
+          var addRentURL = `${process.env.URL}:${process.env.PORT}/insert/expense`;
+          return new Promise((resolve, reject) => {
+            axios({method: 'post', url: addRentURL, data: addRentExpense})
+            .then(res => {
+              resolve(res);
+            })
+            .catch(err => {
+              reject(err);
+            })
+          })//end PROMISE
+        })//end .THEN for insert rent
+        .then(res => {
+          //setusername to update expenses and user info
+          setUsername(dataObj.username);
+          getSetAllUsers();
+        })
+        .catch(err => {
+          alert(`Error Posting ${type}\n\n` + err.response.data);
+          console.error(err);
+        })
+
+      }
 
   }; //end SEND DATA
 
@@ -95,7 +125,7 @@ const Modal = ({formType, username, style, setModal}) => { //formType add-user, 
       <span onClick={e => {e.preventDefault(); setModal({style: {display: 'none'}, type: 'add-user'})}} id='pop-up-exit'>X</span>
       <div className='modal-content'>
         <ModalHeader>Add {type}</ModalHeader>
-        <EvansForm id='myForm' onSubmit={e => {e.preventDefault(); setModalStyle({display: 'none'});}}>
+        <EvansForm id='myForm' onSubmit={e => {e.preventDefault(); setModal({style: {display: 'none'}, type: 'new-user'}); sendData();}}>
           {inputFields}
           <button type='submit'>Submit {type}</button>
         </EvansForm>

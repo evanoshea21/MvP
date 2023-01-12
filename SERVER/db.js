@@ -26,7 +26,8 @@ const User = mongoose.model('User', mongoose.Schema({
   pay_period: { type: String, required: true }, //bi-weekly
   pay_dates: { type: String, required: true }, //bi-weekly has 2 days
   housing: { type: Number, required: true }, //bi-weekly
-  total_expenses: { type: Number }
+  rent_due: { type: Number }, //
+  total_expenses: { type: Number, default: 0 }
 }));
 const Tests = mongoose.model('Tests', mongoose.Schema({
   name: {type: String}, //test

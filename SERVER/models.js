@@ -80,6 +80,7 @@ module.exports = {
 
         db.users.create({...data}, function(err, res) {
           if(err) { reject(err); return}
+          console.log('insert user Successful!');
           resolve(res);
         })//create document
 
