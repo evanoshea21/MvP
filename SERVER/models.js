@@ -96,5 +96,17 @@ module.exports = {
 
       })//promise
     },
+    updateUserByUsername: function(username, data) {
+      console.log('update user', username, ' with data ', data);
+      return new Promise((resolve, reject) => {
+        db.users.findOneAndUpdate({username:username}, {$inc : {total_expenses: data.deltaExpense}}).exec((err, response) => {
+          err ? reject(err) : resolve(`updated user successfully:${username}\n${response}`)
+        });
+        // db.users.updateOne({username}, data, function(err, user) {
+        //   err ? reject(err) : resolve(`deleted user successfully:${user}`)
+        // })
+
+      })//promise
+    },
 
 }

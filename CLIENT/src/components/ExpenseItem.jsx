@@ -1,6 +1,34 @@
 import React from 'react'
+import axios from 'axios'
 
-const ExpenseItem = ({e}) => {
+const ExpenseItem = ({e, getSetExpenses}) => {
+
+  const updateTotalExpense = (difference) => {
+    var difference = Number(difference) - (2 * Number(difference)); //get negative version
+    console.log('DIFFERENCE = ', difference);
+    var url = `${process.env.URL}:${process.env.PORT}/user/${e.username}`
+    axios({method: 'post', url, data: {deltaExpense: difference}})
+    .then(res => {
+      console.log('response delta', res);
+      deleteById();
+    })
+    .catch(err => {
+      console.error('error in delta', err);
+    })
+   }
+
+  const deleteById = () => {
+    var url = `${process.env.URL}:${process.env.PORT}/expense/${e._id}`
+    axios({method: 'delete', url})
+    .then(res => {
+      console.log('delete?', res);
+      //update list
+      getSetExpenses();
+    })
+    .catch(err => {
+      console.log('delete expense error', err);
+    })
+  }
 
   return (
     <div className='expense-item'>
@@ -25,7 +53,7 @@ const ExpenseItem = ({e}) => {
         <span>$ {e.amount}</span>
       </div>
         {/* <button>Delete</button> */}
-        <i className="fa-solid fa-x"></i>
+        <i onClick={ev => {ev.preventDefault(); updateTotalExpense(e.amount);}}className="fa-solid fa-x"></i>
         <i className="fa-solid fa-pencil"></i>
     </div>
   )

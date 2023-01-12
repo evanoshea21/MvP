@@ -10,7 +10,9 @@ router.post('/user', controllers.getUser);
 router.post('/insert/expense', controllers.insertExpense);
 router.post('/insert/user', controllers.insertUser);
 
-router.delete('/expense', controllers.deleteExpenseById);
+router.post('/user/:username', controllers.updateUserByUsername);
+
+router.delete('/expense/:id', controllers.deleteExpenseById);
 router.delete('/user', controllers.deleteUserById);
 
 module.exports = router;

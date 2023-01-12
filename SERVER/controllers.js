@@ -23,7 +23,7 @@ module.exports = {
     })
   },
   deleteExpenseById: function(req,res) {
-    models.deleteExpenseById(req.body.id)
+    models.deleteExpenseById(req.params.id)
     .then(response => {
       res.status(200).send(response);
     })
@@ -67,6 +67,16 @@ module.exports = {
 
   deleteUser: function(req,res) {
     models.deleteUser(req.body.id)
+    .then(response => {
+      res.status(201).send(response);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    })
+  },
+  updateUserByUsername: function(req,res) {
+    console.log('update by USERNAME...', req.params.username, req.body);
+    models.updateUserByUsername(req.params.username, req.body)
     .then(response => {
       res.status(201).send(response);
     })
