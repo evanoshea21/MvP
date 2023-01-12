@@ -1,7 +1,7 @@
 import React from 'react'
 import ExpenseItem from './ExpenseItem.jsx'
 
-const Expenses = ({setModal, expenses}) => {
+const Expenses = ({getSetUserData, getSetExpenses, setModal, expenses}) => {
   return (
     <div className='expenses'>
       <div className='expense-head'>
@@ -28,7 +28,7 @@ const Expenses = ({setModal, expenses}) => {
       </div>
       <div className='expense-grid'>
       {expenses.map((e, i) => {
-        return <ExpenseItem key={e._id} e={e}/>
+        return <ExpenseItem getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} key={e._id} e={e}/>
       })}
 
       </div>

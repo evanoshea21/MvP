@@ -40,7 +40,7 @@ const APP = () => {
       data: {username, sort: sort}
     })
     .then(response => {
-      console.log('response expenses', response.data);
+      console.log('RESPONSE UPDATE EXPENSES\n', response.data);
       setExpenses(response.data);
     })
     .catch(err => {
@@ -63,6 +63,7 @@ const APP = () => {
     })
   }
   const getSetAllUsers = () => {
+    //set current user to username
     axios({
       method: 'post',
       url: `${process.env.URL}:${process.env.PORT}/user`,
@@ -83,7 +84,7 @@ const APP = () => {
       <Header />
       <UserHeader setModal={setModal} userData={userData} allUsers={allUsers} setUser={setUsername}/>
       <div id='expense-box'>
-        <Expenses expenses={expenses} setModal={setModal}/>
+        <Expenses getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} expenses={expenses} setModal={setModal}/>
         <FinanceSidebar setModal={setModal}/>
       </div >
       <Modal getSetAllUsers={getSetAllUsers} username={username} setUsername={setUsername} style={modal.style} setModal={setModal} formType={modal.type}/>

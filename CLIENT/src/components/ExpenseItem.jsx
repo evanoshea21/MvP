@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-const ExpenseItem = ({e, getSetExpenses}) => {
+const ExpenseItem = ({e, getSetUserData, getSetExpenses}) => {
 
   const updateTotalExpense = (difference) => {
     var difference = Number(difference) - (2 * Number(difference)); //get negative version
@@ -23,7 +23,8 @@ const ExpenseItem = ({e, getSetExpenses}) => {
     .then(res => {
       console.log('delete?', res);
       //update list
-      getSetExpenses();
+      getSetExpenses(e.username, 'dateNext');
+      getSetUserData(e.username);
     })
     .catch(err => {
       console.log('delete expense error', err);
