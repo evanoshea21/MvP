@@ -15,18 +15,20 @@ module.exports = {
     var todaysDate = new Date().getDate();
 
     return new Promise((resolve,reject) => {
-      db.expenses.find({username}).sort(sortBy).exec((err, results) => {
-        console.log('user ', username, 'got to query...');
-        console.log('user ', username, 'errResults', err, results);
+      db.expenses.find({username:username}).sort(sortBy).exec((err, results) => {
         if(err) { reject(err); return}
+        // resolve(results);
+        // return;
         if(sort === 'dateNext' && results.length) {
-
+          console.log('RESTULS (hanging) ->', results);
           for(var i = 0; i < results.length; i++) {
             if(results[i].due_date >= todaysDate) {
               var dateNextArr = results.slice(i).concat(results.slice(0,i));
               resolve(dateNextArr);
               return;
             }
+            resolve(results);
+            return;
           }//forLoop
         } else { //not dateNext
           resolve(results);

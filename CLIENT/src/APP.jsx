@@ -31,7 +31,7 @@ const APP = () => {
 
 
   const getSetExpenses = (username, sort) => {
-    console.log('username sort before call2', username, sort);//getting it?//
+    console.log('GET SET EXPENSES', username, sort);//getting it?//
 
     axios({
       method: 'post',
