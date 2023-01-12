@@ -125,7 +125,7 @@ const APP = () => {
         <Expenses sort={sort} setSort={setSort} username={username} setExpenses={setExpenses} getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} expenses={expenses} setModal={setModal}/>
         <FinanceSidebar setModal={setModal}/>
       </div >
-      <Modal getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} getSetAllUsers={getSetAllUsers} username={username} setUsername={setUsername} style={modal.style} setModal={setModal} formType={modal.type}/>
+      <Modal allUsers={allUsers} getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} getSetAllUsers={getSetAllUsers} username={username} setUsername={setUsername} style={modal.style} setModal={setModal} formType={modal.type}/>
       {/* new-user, add-expense, new-savings */}
     </div>
   )

@@ -16,11 +16,11 @@ const UserHeader = ({categoryTotal, userData, allUsers, setUser, setModal}) => {
           <h1 className='h1'>User Info</h1>
           <div className='user-buttons'>
             <button onClick={e => {e.preventDefault(); setModal({style: {display: 'block'}, type: 'add-user'})}}>New User</button>
-            <select onChange={e=> {e.preventDefault(); changeUser(e);}}>
+            <select id='user-dropdown' onChange={e=> {e.preventDefault(); changeUser(e);}}>
               <option>Select User</option>
               {allUsers.map(user => {
                 if(user.username !== 'Sample User') {
-                  return <option key={user._id}>{user.username}</option>
+                  return <option value={user.username} key={user._id}>{user.username}</option>
                 }
               })}
             </select>

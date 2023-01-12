@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from "styled-components";
@@ -26,7 +27,7 @@ import styled from "styled-components";
 `;
   //END of styled components
 
-const Modal = ({formType, username, setUsername, style, setModal, getSetUserData, getSetExpenses, getSetAllUsers}) => { //formType add-user, add-expense, new-savings
+const Modal = ({formType, username, setUsername, style, setModal, getSetUserData, getSetExpenses, getSetAllUsers, allUsers}) => { //formType add-user, add-expense, new-savings
   // console.log('MODAL Type', formType);
   var type;
   if(formType === 'add-user') {type = 'user'}
@@ -102,6 +103,15 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetUserData
     })
    }
 
+   React.useEffect(() => {
+    // console.log('all users after set from modal\n', allUsers);
+    // console.log('DOM=>\n', $("#user-dropdown")[0]);
+     $("#user-dropdown option").filter(function() {
+      return $(this).val() === username;
+    }).prop('selected', true);
+   }, [allUsers])
+
+
   const sendData = () => {
 
     //GATHER FORM DATA
@@ -148,8 +158,8 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetUserData
         })//end .THEN for insert rent
         .then(res => {
           //setusername to update expenses and user info
-          setUsername(dataObj.username);
-          getSetAllUsers();
+            setUsername(dataObj.username);
+             getSetAllUsers();
         })
         .catch(err => {
           alert(`Error Posting ${type}\n\n` + err.response.data);
