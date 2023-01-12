@@ -26,7 +26,7 @@ import styled from "styled-components";
 `;
   //END of styled components
 
-const Modal = ({formType, username, setUsername, style, setModal, getSetAllUsers}) => { //formType add-user, add-expense, new-savings
+const Modal = ({formType, username, setUsername, style, setModal, getSetUserData, getSetExpenses, getSetAllUsers}) => { //formType add-user, add-expense, new-savings
   console.log('MODAL Type', formType);
   var type;
   if(formType === 'add-user') {type = 'user'}
@@ -47,8 +47,8 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetAllUsers
       <input type='text' name='title' key={39} placeholder={`rent, netflix, etc`} required={true}></input>,
       <input type='text' name='category' key={38} placeholder={`housing, subscription...`} required={true}></input>,
       <input type='text' name='type' key={37} placeholder={`essential, non-essential...`} required={true}></input>,
-      <input type='text' name='due-date' key={36} placeholder={`date with "th"`} required={true}></input>,
-      <input type='text' name='pay-period' key={35} placeholder={`bi-weekly, monthly...`} required={true}></input>,
+      <input type='text' name='due_date' key={36} placeholder={`date with "th"`} required={true}></input>,
+      <input type='text' name='pay_period' key={35} placeholder={`bi-weekly, monthly...`} required={true}></input>,
       <input type='text' name='amount' key={34} placeholder={`Amount in USD`} required={true}></input>
     ];
   }
@@ -58,6 +58,19 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetAllUsers
       // <input type='text' name='sample' key={28} placeholder='sample'></input>
   }
 
+  const updateTotalExpense = (difference) => {
+    var difference = Number(difference);
+    console.log('DIFFERENCE = ', difference);
+    var url = `${process.env.URL}:${process.env.PORT}/user/${username}`
+    axios({method: 'post', url, data: {deltaExpense: difference}})
+    .then(res => {
+      console.log('response delta', res);
+      getSetUserData(username);
+    })
+    .catch(err => {
+      console.error('error in delta', err);
+    })
+   }
 
   const sendData = () => {
 
@@ -68,7 +81,6 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetAllUsers
       for (const [key, value] of formData) {
         Object.assign(dataObj, {[key]: value})
       }
-      Object.assign(dataObj, {total_expenses: dataObj.housing})
 
       console.log('dataObj from Modal:\n', dataObj);
       //POST user, expense from dataObj
@@ -80,6 +92,7 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetAllUsers
         //setUsername to user entered
         //create useEffect[username] -> get all expenses and set expense
       if(formType === 'add-user') {
+        Object.assign(dataObj, {total_expenses: dataObj.housing})
         const url = `${process.env.URL}:${process.env.PORT}/insert/user`;
         axios({method: 'post', url: url, data: dataObj})
         .then((res) => {
@@ -113,6 +126,21 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetAllUsers
           console.error(err);
         })
 
+      } else if (formType === 'add-expense') {
+        Object.assign(dataObj, {username: username});
+        console.log('DATA TO INSERT EXPENSE\n', dataObj);
+        const url = `${process.env.URL}:${process.env.PORT}/insert/expense`;
+        axios({method: 'post', url, data: dataObj})
+        .then((res) => {
+          updateTotalExpense(dataObj.amount);
+          //now expense should be added.
+          console.log('INSERTED EXPENSE?', res);
+          //get and set expenses (username, 'none')
+          getSetExpenses(username, 'dateNext');
+        })//end .THEN for insert rent
+        .catch(err => {
+          console.error(err);
+        })
       }
 
   }; //end SEND DATA

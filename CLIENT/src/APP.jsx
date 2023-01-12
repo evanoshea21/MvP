@@ -87,7 +87,7 @@ const APP = () => {
         <Expenses getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} expenses={expenses} setModal={setModal}/>
         <FinanceSidebar setModal={setModal}/>
       </div >
-      <Modal getSetAllUsers={getSetAllUsers} username={username} setUsername={setUsername} style={modal.style} setModal={setModal} formType={modal.type}/>
+      <Modal getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} getSetAllUsers={getSetAllUsers} username={username} setUsername={setUsername} style={modal.style} setModal={setModal} formType={modal.type}/>
       {/* new-user, add-expense, new-savings */}
     </div>
   )
