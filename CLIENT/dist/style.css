@@ -8,7 +8,8 @@ button,select {
   padding: 10px;
   margin: 0 5px;
   /* font-size: 1.2em; */
-  /* background-color: rgb(230, 245, 243); */
+  background-color: #243763;
+  color: white;
 }
 
 h1, .h1 {
@@ -32,9 +33,10 @@ h1, .h1 {
   justify-content: space-around;
 }
 #header {
-  background-color: antiquewhite;
+  background-color: #243763;
   font-family: 'Roboto', sans-serif;
   font-size: 2em;
+  color:white;
 
   height: 150px;
   display: flex;
@@ -42,18 +44,19 @@ h1, .h1 {
   align-items: center;
 }
 .user-header {
-  background-color:rgb(224, 254, 254);
+  /* background-color: #AD8E70; */
   min-height: fit-content;
   display: flex;
   padding-bottom: 30px;
+  color: #192543;
 }
 .expenses {
-  /* background-color:bisque; */
+  /* background-color: #FFEBB7; */
   width: 70%;
 
 }
 .finance-sidebar {
-  background-color:rgb(240, 253, 255);
+  /* background-color: #AD8E70; */
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -172,7 +175,7 @@ h1, .h1 {
 }
 .fa-x {
   cursor: pointer;
-  color: rgba(243, 36, 36, 0.901);
+  color: #FF6E31;
   font-size: 1.3em;
   z-index: 10;
   position: absolute;
@@ -185,7 +188,7 @@ h1, .h1 {
 }
 .fa-pencil {
   cursor: pointer;
-  color: rgba(77, 194, 77, 0.958);
+  color: rgba(77, 194, 77, 0.739);
   font-size: 1.3em;
   z-index: 10;
   position: absolute;

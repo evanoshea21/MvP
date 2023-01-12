@@ -11,12 +11,13 @@ var data = [
 ];
 
 var bgColors = [
-    'rgb(255, 99, 132)',
+    '#FF6E31',
+    '#FF6E31', //HOUSING (biggest accent color)
     'rgb(54, 162, 235)',
     'rgb(255, 205, 86)',
     'rgb(255, 205, 86)',
     'rgb(255, 205, 86)',
-    'rgb(255, 205, 86)'
+    'rgb(255, 205, 86)',
 ];
 const PieChart = ({categoryTotal}) => {
   const [userData, setUserData] = React.useState({
@@ -24,7 +25,7 @@ const PieChart = ({categoryTotal}) => {
     datasets: [{
       label: '$',
       data: data.map(data => data.amount),
-      backgroundColors: [...bgColors]
+      backgroundColor: [...bgColors]
     }]
   })
 

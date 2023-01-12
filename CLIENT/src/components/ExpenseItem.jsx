@@ -1,7 +1,38 @@
 import React from 'react'
 import axios from 'axios'
+import $ from 'jquery'
 
 const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
+  const [editingOn, toggleEditing] = React.useState(false);
+  const [editingStyle, setEditingStyle] = React.useState([{display: 'none'},{display: 'block'}]);
+
+  const editExpense = () => {
+    toggleEditing(!editingOn);
+    setEditingStyle([editingStyle[1], editingStyle[0]]);
+
+    if(editingOn) {
+      console.log('SEND EDIT');
+    }
+    const url = `${process.env.URL}:${process.env.PORT}/expense/edit`
+    var obj = {};
+    obj.title = $('.title').val();
+    obj.category = $('.category').val();
+    obj.type = $('.type').val();
+    obj.due_date = $('.due_date').val();
+    obj.amount = $('.amount').val();
+    console.log('PATCH OBJ', obj);
+
+    // title: 'renting',
+    // category: 'Housing',
+    // type: 'Essential',
+    // due_date: 4,
+    // pay_period: 'monthly',
+    // amount: 10000,
+
+    // axios({method: 'patch', url, data: {
+    //   id: e._id
+    // }})
+   };
 
   const updateTotalExpense = (difference) => {
     var difference = Math.round((Number(difference) - (2 * Number(difference)))*100) / 100; //get negative version
@@ -35,28 +66,34 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
 
     <div className='expense-item'>
       <div>
+
         {/* <span>TITLE</span> */}
-        <span>{e.title}</span>
+        <input className='title' type='text' name='title' value={e.title} style={editingStyle[0]}/>
+        <span style={editingStyle[1]}>{e.title}</span>
       </div>
       <div>
         {/* <span>CATEGORY</span> */}
-        <span>{e.category}</span>
+        <input className='category' type='text' name='category' value={e.category} style={editingStyle[0]}/>
+        <span style={editingStyle[1]}>{e.category}</span>
       </div>
       <div>
         {/* <span>TYPE</span> */}
-        <span>{e.type}</span>
+        <input className='type' type='text' name='type' value={e.type} style={editingStyle[0]}/>
+        <span style={editingStyle[1]}>{e.type}</span>
       </div>
       <div>
         {/* <span>DUE DATE</span> */}
-        <span>{e.due_date}</span>
+        <input className='due_date' type='text' name='due_date' value={e.due_date} style={editingStyle[0]}/>
+        <span style={editingStyle[1]}>{e.due_date}</span>
       </div>
       <div>
         {/* <span>AMOUNT</span> */}
-        <span>$ {e.amount}</span>
+        <input className='amount' type='text' name='amount' value={e.amount} style={editingStyle[0]}/>
+        <span style={editingStyle[1]}>$ {e.amount}</span>
       </div>
         {/* <button>Delete</button> */}
-        <i onClick={ev => {ev.preventDefault(); updateTotalExpense(e.amount);}}className="fa-solid fa-x"></i>
-        <i className="fa-solid fa-pencil"></i>
+        <i onClick={ev => {ev.preventDefault(); updateTotalExpense(e.amount);}} className="fa-solid fa-x"></i>
+        <i onClick={ev => {ev.preventDefault(); editExpense();}} className="fa-solid fa-pencil"></i>
     </div>
   )
 }
