@@ -9,12 +9,22 @@ var data = [
   {category: 'savings', amount: 200},
   {category: 'investments', amount: 100}
 ];
+
+var bgColors = [
+    'rgb(255, 99, 132)',
+    'rgb(54, 162, 235)',
+    'rgb(255, 205, 86)',
+    'rgb(255, 205, 86)',
+    'rgb(255, 205, 86)',
+    'rgb(255, 205, 86)'
+];
 const PieChart = ({categoryTotal}) => {
   const [userData, setUserData] = React.useState({
     labels: data.map(data => data.category),
     datasets: [{
       label: '$',
-      data: data.map(data => data.amount)
+      data: data.map(data => data.amount),
+      backgroundColors: [...bgColors]
     }]
   })
 

@@ -5,7 +5,7 @@ const FinanceSidebar = ({setModal}) => {
     <div className='finance-sidebar'>
       <div className='finance-tips'>
         <h3>Financial Tip</h3>
-        "Clean your room, save some money..."
+        <div>"Save some money..."</div>
       </div>
       <div className='finance-utils'>
         <h2>Utilities</h2>
