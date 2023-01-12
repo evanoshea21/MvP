@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 
-const ExpenseItem = ({e, getSetUserData, getSetExpenses}) => {
+const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
 
   const updateTotalExpense = (difference) => {
-    var difference = Number(difference) - (2 * Number(difference)); //get negative version
+    var difference = Math.round((Number(difference) - (2 * Number(difference)))*100) / 100; //get negative version
     console.log('DIFFERENCE = ', difference);
     var url = `${process.env.URL}:${process.env.PORT}/user/${e.username}`
     axios({method: 'post', url, data: {deltaExpense: difference}})
@@ -23,15 +23,16 @@ const ExpenseItem = ({e, getSetUserData, getSetExpenses}) => {
     .then(res => {
       console.log('delete?', res);
       //update list
-      getSetExpenses(e.username, 'dateNext');
+      getSetExpenses(e.username, sort);
       getSetUserData(e.username);
     })
     .catch(err => {
       console.log('delete expense error', err);
     })
   }
-
+  // style={thisStyle}
   return (
+
     <div className='expense-item'>
       <div>
         {/* <span>TITLE</span> */}

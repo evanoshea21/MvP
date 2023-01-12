@@ -9,7 +9,7 @@ var data = [
   {category: 'savings', amount: 200},
   {category: 'investments', amount: 100}
 ];
-const PieChart = (props) => {
+const PieChart = ({categoryTotal}) => {
   const [userData, setUserData] = React.useState({
     labels: data.map(data => data.category),
     datasets: [{
@@ -17,6 +17,22 @@ const PieChart = (props) => {
       data: data.map(data => data.amount)
     }]
   })
+
+  React.useEffect(() => {
+    console.log('CAT TOTAL change in PIE', categoryTotal);
+    var catKeys = Object.keys(categoryTotal);
+    var catVals = Object.values(categoryTotal);
+    console.log('Cat Keys', catKeys);
+    console.log('Cat Vals', catVals);
+    setUserData({
+      labels: catKeys,
+      datasets: [{
+        label: '$',
+        data: catVals
+      }]
+    })
+  }, [categoryTotal])
+
 
   return (
     <div style={{width: 400}}>

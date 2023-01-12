@@ -1,14 +1,13 @@
 import React from 'react'
 import PieChart from './PieChart.jsx';
 
-const UserHeader = ({userData, allUsers, setUser, setModal}) => {
+const UserHeader = ({categoryTotal, userData, allUsers, setUser, setModal}) => {
 
   const changeUser = (e) => {
     var username = e.target.value === "Select User" ? 'Sample User' : e.target.value;
     console.log('e in changeUser', username); //works
     setUser(username);
   };
-
 
   return (
     <div className='user-header'>
@@ -44,10 +43,10 @@ const UserHeader = ({userData, allUsers, setUser, setModal}) => {
       </div>
       <div className='surplus'>
         <span>Weekly Surplus:</span>
-        <span>$200</span>
+        <span>$ {Math.round((userData.monthly_income - userData.total_expenses) / 4 * 100) / 100}</span>
       </div>
       <div className='user-visual'>
-        <PieChart/>
+        <PieChart categoryTotal={categoryTotal}/>
       </div>
     </div>
   )

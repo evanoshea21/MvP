@@ -27,7 +27,7 @@ import styled from "styled-components";
   //END of styled components
 
 const Modal = ({formType, username, setUsername, style, setModal, getSetUserData, getSetExpenses, getSetAllUsers}) => { //formType add-user, add-expense, new-savings
-  console.log('MODAL Type', formType);
+  // console.log('MODAL Type', formType);
   var type;
   if(formType === 'add-user') {type = 'user'}
   if(formType === 'add-expense' || formType === 'add-goal' ) {type = 'expense'}
@@ -48,7 +48,7 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetUserData
       <select name='category'>,
         <option key={2}>Subscription</option>,
         <option key={3}>Housing</option><option key={4}>Auto</option>,
-        <option key={5}>Living Costs</option><option key={51}>Savings/Investment</option>,
+        <option key={5}>Living Costs</option><option key={51}>Savings/Investments</option>,
         <option key={52}>Debt Payment</option><option key={6}>Other</option>,
       </select>,
       <select name='type'>,
@@ -129,7 +129,7 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetUserData
           var addRentExpense = {
             username: dataObj.username,
             title: 'Rent/Mortgage',
-            category: 'housing',
+            category: 'Housing',
             type: 'essential',
             due_date: dataObj.rent_due,
             pay_period: "monthly",

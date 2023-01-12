@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import ExpenseItem from './ExpenseItem.jsx'
 
-const Expenses = ({getSetUserData, username, setExpenses, getSetExpenses, setModal, expenses}) => {
+const Expenses = ({getSetUserData, sort, setSort, username, setExpenses, getSetExpenses, setModal, expenses}) => {
 
   const sortExpenses = (sortTerm) => {
     var sortValue;
@@ -11,6 +11,7 @@ const Expenses = ({getSetUserData, username, setExpenses, getSetExpenses, setMod
     if(sortTerm === 'Amount (descending)') {sortValue = 'amountD'}
     if(sortTerm === 'Amount (ascending)') {sortValue = 'amountA'}
     const url = `${process.env.URL}:${process.env.PORT}/expenses`;
+    setSort(sortValue);
     axios({method: 'post', url, data: {username, sort: sortValue}})
     .then(res => {
       console.log('ORDERED EXPENSES\n', res.data);
@@ -50,7 +51,7 @@ const Expenses = ({getSetUserData, username, setExpenses, getSetExpenses, setMod
       </div>
       <div className='expense-grid'>
       {expenses.map((e, i) => {
-        return <ExpenseItem getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} key={e._id} e={e}/>
+        return <ExpenseItem sort={sort} getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} key={e._id} e={e}/>
       })}
 
       </div>

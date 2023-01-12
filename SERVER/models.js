@@ -20,16 +20,18 @@ module.exports = {
         // resolve(results);
         // return;
         if(sort === 'dateNext' && results.length) {
-          console.log('RESTULS (hanging) ->', results);
+          console.log('RESTULS (hanging) ->', results, todaysDate);
           for(var i = 0; i < results.length; i++) {
+            console.log('results dueDate vs todays,', results[i].due_date);
+
             if(results[i].due_date >= todaysDate) {
               var dateNextArr = results.slice(i).concat(results.slice(0,i));
               resolve(dateNextArr);
               return;
             }
+          }//forLoop
             resolve(results);
             return;
-          }//forLoop
         } else { //not dateNext
           resolve(results);
         }
