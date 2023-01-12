@@ -84,7 +84,7 @@ const APP = () => {
       <Header />
       <UserHeader setModal={setModal} userData={userData} allUsers={allUsers} setUser={setUsername}/>
       <div id='expense-box'>
-        <Expenses getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} expenses={expenses} setModal={setModal}/>
+        <Expenses username={username} setExpenses={setExpenses} getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} expenses={expenses} setModal={setModal}/>
         <FinanceSidebar setModal={setModal}/>
       </div >
       <Modal getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} getSetAllUsers={getSetAllUsers} username={username} setUsername={setUsername} style={modal.style} setModal={setModal} formType={modal.type}/>
