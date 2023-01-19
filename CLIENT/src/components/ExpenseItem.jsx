@@ -5,10 +5,24 @@ import $ from 'jquery'
 const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
   const [editingOn, toggleEditing] = React.useState(false);
   const [editingStyle, setEditingStyle] = React.useState([{display: 'none'},{display: 'block'}]);
+  const [postFixDate, setPostFixDate] = React.useState('th');
 
   const iconStyle = e.username === 'Sample User' ? {display: 'none'} : {};
   const idTail = e._id.slice(-7) + e._id.slice(0,3);
   // console.log('idTail', idTail);
+
+  React.useEffect(() => {
+    var dateNum =  String(e.due_date);
+    if(dateNum.slice(-1) === '1') {
+      setPostFixDate('st');
+    } else if (dateNum.slice(-1) === '2' && dateNum !== '12') {
+      setPostFixDate('nd');
+    } else if (dateNum.slice(-1) === '3' && dateNum !== '12') {
+      setPostFixDate('rd');
+    } else {
+      setPostFixDate('th');
+    }
+  }, []);
 
   const editExpense = () => {
     toggleEditing(!editingOn);
@@ -82,7 +96,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
   return (
 
     <div className='expense-item'>
-      <div className='expense-field expense-title'>
+      <div>
 
         {/* <span>TITLE</span> */}
         <input key={15} className={`title${idTail}`} type='text' name='title' defaultValue={e.title} style={editingStyle[0]}/>
@@ -101,7 +115,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
       <div className='expense-field'>
         {/* <span>DUE DATE</span> */}
         <input key={12} className={`due_date${idTail}`} type='text' name='due_date' defaultValue={e.due_date} style={editingStyle[0]}/>
-        <span style={editingStyle[1]}>{e.due_date}</span>
+        <span style={editingStyle[1]}>{e.due_date}{postFixDate}</span>
       </div>
       <div className='expense-field'>
         {/* <span>AMOUNT</span> */}

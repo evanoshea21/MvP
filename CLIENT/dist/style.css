@@ -275,3 +275,7 @@ h1, .h1 {
 
   background-color: #FF6E31;
 }
+.expense-item input {
+  /* background-color: red; */
+  padding: 10px;
+}
