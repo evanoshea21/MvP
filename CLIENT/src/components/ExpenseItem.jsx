@@ -21,7 +21,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
     obj.type = $(`.type${idTail}`).val();
     obj.due_date = $(`.due_date${idTail}`).val();
     obj.amount = $(`.amount${idTail}`).val();
-    console.log('PATCH OBJ', obj);
+    // console.log('PATCH OBJ', obj);
 
     //axios
     // first store previous AMOUNT
@@ -30,7 +30,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
     // then setAndGet new Expenses
 
     if(editingOn) {
-      console.log('SEND EDIT');
+      // console.log('SEND EDIT');
       var oldAmount = e.amount;
       axios({method: 'post', url, data: obj})
       .then(res => {
@@ -52,7 +52,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
     var url = `${process.env.URL}:${process.env.PORT}/user/${e.username}`
     axios({method: 'post', url, data: {deltaExpense: difference}})
     .then(res => {
-      console.log('response delta', res);
+      // console.log('response delta', res);
       if(!positive) {
         deleteById();
       } else {
@@ -69,7 +69,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
     var url = `${process.env.URL}:${process.env.PORT}/expense/${e._id}`
     axios({method: 'delete', url})
     .then(res => {
-      console.log('delete?', res);
+      // console.log('delete?', res);
       //update list
       getSetExpenses(e.username, sort);
       getSetUserData(e.username);
@@ -82,28 +82,28 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
   return (
 
     <div className='expense-item'>
-      <div>
+      <div className='expense-field expense-title'>
 
         {/* <span>TITLE</span> */}
         <input key={15} className={`title${idTail}`} type='text' name='title' defaultValue={e.title} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.title}</span>
       </div>
-      <div>
+      <div className='expense-field'>
         {/* <span>CATEGORY</span> */}
         <input key={14} className={`category${idTail}`} type='text' name='category' defaultValue={e.category} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.category}</span>
       </div>
-      <div>
+      <div className='expense-type expense-field'>
         {/* <span>TYPE</span> */}
         <input key={13} className={`type${idTail}`} type='text' name='type' defaultValue={e.type} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.type}</span>
       </div>
-      <div>
+      <div className='expense-field'>
         {/* <span>DUE DATE</span> */}
         <input key={12} className={`due_date${idTail}`} type='text' name='due_date' defaultValue={e.due_date} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>{e.due_date}</span>
       </div>
-      <div>
+      <div className='expense-field'>
         {/* <span>AMOUNT</span> */}
         <input key={11} className={`amount${idTail}`} type='text' name='amount' defaultValue={e.amount} style={editingStyle[0]}/>
         <span style={editingStyle[1]}>$ {e.amount}</span>

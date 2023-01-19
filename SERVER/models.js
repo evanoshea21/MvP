@@ -12,7 +12,7 @@ module.exports = {
     else if(sort === 'amountD') {sortBy = {amount: -1}}
     else {sortBy = {}}
     var todaysDate = new Date().getDate();
-    console.log('TodaysDate ', todaysDate);
+    // console.log('TodaysDate ', todaysDate);
 
     return new Promise((resolve,reject) => {
       db.expenses.find({username:username}).sort(sortBy).exec((err, results) => {

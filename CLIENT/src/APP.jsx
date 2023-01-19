@@ -66,8 +66,8 @@ const APP = () => {
       objCategory[exp.category] += exp.amount;
       objType[exp.type] += exp.amount;
     })
-    console.log('category Totals..', objCategory);
-    console.log('type Totals..', objType);
+    // console.log('category Totals..', objCategory);
+    // console.log('type Totals..', objType);
     setCategoryTotal(objCategory);
     setTypeTotal(objType);
     //go through ALL expenses

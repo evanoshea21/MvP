@@ -5,6 +5,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const UserHeader = ({typeTotal, categoryTotal, userData, allUsers, setUser, setModal}) => {
   const [pieDataType, setPieDataType] = React.useState('category');
+  const [percentIncome, setPercentIncome] = React.useState(50);
+  const [color, setColor] = React.useState('orange');
   console.log('userData', userData);
 
   const changeUser = (e) => {
@@ -12,6 +14,22 @@ const UserHeader = ({typeTotal, categoryTotal, userData, allUsers, setUser, setM
     // console.log('e in changeUser', username); //works
     setUser(username);
   };
+
+  React.useEffect(() => {
+    if(userData) {
+      var x = Math.floor(userData.housing / userData.monthly_income * 100);
+      setPercentIncome(x);
+    }
+  }, [userData])
+  React.useEffect(() => {
+    if(percentIncome < 20) {
+      setColor('green');
+    } else if(percentIncome >= 20 && percentIncome < 30) {
+      setColor('orange');
+    } else {
+      setColor('red');
+    }
+  }, [percentIncome])
 
   const handleChange = (e) => {
     console.log('TOGGLE VALUE', e.target.value);
@@ -40,13 +58,13 @@ const UserHeader = ({typeTotal, categoryTotal, userData, allUsers, setUser, setM
             <span>User</span>
             <span>Income (monthly)</span>
             <span>Expenses (monthly)</span>
-            <span>Rent</span>
+            <span>Rent (% of income)</span>
           </div>
           <div className='info-right' style={{width: '50%'}}>
             <span>{userData.username}</span>
             <span>$ {userData.monthly_income}</span>
             <span>$ {userData.total_expenses}</span>
-            <span>$ {userData.housing}</span>
+            <span style={{color: color}} >{percentIncome}%</span>
           </div>
         </div>
       </div>
