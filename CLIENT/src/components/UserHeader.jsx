@@ -2,6 +2,7 @@ import React from 'react'
 import PieChart from './PieChart.jsx';
 
 const UserHeader = ({categoryTotal, userData, allUsers, setUser, setModal}) => {
+  console.log('userData', userData);
 
   const changeUser = (e) => {
     var username = e.target.value === "Select User" ? 'Sample User' : e.target.value;

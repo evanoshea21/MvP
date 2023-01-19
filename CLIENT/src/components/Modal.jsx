@@ -140,7 +140,7 @@ const Modal = ({formType, username, setUsername, style, setModal, getSetUserData
             username: dataObj.username,
             title: 'Rent/Mortgage',
             category: 'Housing',
-            type: 'essential',
+            type: 'Essential',
             due_date: dataObj.rent_due,
             pay_period: "monthly",
             amount: dataObj.housing,

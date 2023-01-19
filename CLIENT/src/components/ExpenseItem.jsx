@@ -6,6 +6,7 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
   const [editingOn, toggleEditing] = React.useState(false);
   const [editingStyle, setEditingStyle] = React.useState([{display: 'none'},{display: 'block'}]);
 
+  const iconStyle = e.username === 'Sample User' ? {display: 'none'} : {};
   const idTail = e._id.slice(-7) + e._id.slice(0,3);
   // console.log('idTail', idTail);
 
@@ -108,8 +109,8 @@ const ExpenseItem = ({e, sort, getSetUserData, getSetExpenses}) => {
         <span style={editingStyle[1]}>$ {e.amount}</span>
       </div>
         {/* <button>Delete</button> */}
-        <i onClick={ev => {ev.preventDefault(); updateTotalExpense(e.amount);}} className="fa-solid fa-x"></i>
-        <i onClick={ev => {ev.preventDefault(); editExpense();}} className="fa-solid fa-pencil"></i>
+        <i style={iconStyle} onClick={ev => {ev.preventDefault(); updateTotalExpense(e.amount);}} className="fa-solid fa-x"></i>
+        <i style={iconStyle} onClick={ev => {ev.preventDefault(); editExpense();}} className="fa-solid fa-pencil"></i>
     </div>
   )
 }

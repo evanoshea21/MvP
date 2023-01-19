@@ -11,8 +11,8 @@ module.exports = {
     else if(sort === 'amountA') {sortBy = {amount: 1}}
     else if(sort === 'amountD') {sortBy = {amount: -1}}
     else {sortBy = {}}
-    // console.log('SORTBY ', sortBy);
     var todaysDate = new Date().getDate();
+    console.log('TodaysDate ', todaysDate);
 
     return new Promise((resolve,reject) => {
       db.expenses.find({username:username}).sort(sortBy).exec((err, results) => {
@@ -20,9 +20,9 @@ module.exports = {
         // resolve(results);
         // return;
         if(sort === 'dateNext' && results.length) {
-          console.log('RESTULS (hanging) ->', results, todaysDate);
+          // console.log('RESTULS (hanging) ->', results, todaysDate);
           for(var i = 0; i < results.length; i++) {
-            console.log('results dueDate vs todays,', results[i].due_date);
+            // console.log('results dueDate vs todays,', results[i].due_date);
 
             if(results[i].due_date >= todaysDate) {
               var dateNextArr = results.slice(i).concat(results.slice(0,i));

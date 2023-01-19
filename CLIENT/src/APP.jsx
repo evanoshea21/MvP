@@ -10,7 +10,6 @@ import FinanceSidebar from './components/FinanceSidebar.jsx';
 import Modal from './components/Modal.jsx';
 
 const APP = () => {
-
   const [username, setUsername] = useState('Sample User');
   const [userData, setUserData] = useState({});
   const [allUsers, setAllUsers] = useState([]);
@@ -26,10 +25,17 @@ const APP = () => {
     'Debt Payment': 0,
     Other: 0
   });
+  const [typeTotal, setTypeTotal] = useState({
+    Essential: 0,
+    'Non-Essential': 0,
+    Liability: 0,
+    Asset: 0,
+    Other: 0
+  });
 
   React.useEffect(() => {
-    calcCategoryTotals();
-  }, [expenses])
+    calcTotals();
+  }, [expenses]);
 
 
   React.useEffect(() => { //get and set expenses
@@ -42,29 +48,28 @@ const APP = () => {
   React.useEffect(() => {
     getSetUserData(username);
     getSetExpenses(username, sort);
-  }, [username])
+  }, [username]);
 
 
-  const calcCategoryTotals = () => {
-    setCategoryTotal({
-      Subscription: 0,
-      Housing: 0,
-      Auto: 0,
-      "Living Costs": 0,
-      'Savings/Investments': 0,
-      'Debt Payment': 0,
-      Other: 0
-    });
-    var obj = {}
-    Object.assign(obj, categoryTotal);
-    for(var key in obj) {
-      obj[key] = 0;
+  const calcTotals = () => {
+    var objCategory = {};
+    var objType = {};
+    Object.assign(objCategory, categoryTotal);
+    Object.assign(objType, typeTotal);
+    for(var key in objCategory) {
+      objCategory[key] = 0;
     } //resets it
-    expenses.forEach(e => {
-      obj[e.category] += e.amount;
+    for(var key in objType) {
+      objType[key] = 0;
+    } //resets it
+    expenses.forEach(exp => {
+      objCategory[exp.category] += exp.amount;
+      objType[exp.type] += exp.amount;
     })
-    // console.log('category Totals..', Object.values(obj));
-    setCategoryTotal(obj);
+    console.log('category Totals..', objCategory);
+    console.log('type Totals..', objType);
+    setCategoryTotal(objCategory);
+    setTypeTotal(objType);
     //go through ALL expenses
   };
 
