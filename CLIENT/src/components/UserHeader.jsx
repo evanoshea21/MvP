@@ -1,13 +1,21 @@
 import React from 'react'
 import PieChart from './PieChart.jsx';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-const UserHeader = ({categoryTotal, userData, allUsers, setUser, setModal}) => {
+const UserHeader = ({typeTotal, categoryTotal, userData, allUsers, setUser, setModal}) => {
+  const [pieDataType, setPieDataType] = React.useState('category');
   console.log('userData', userData);
 
   const changeUser = (e) => {
     var username = e.target.value === "Select User" ? 'Sample User' : e.target.value;
     // console.log('e in changeUser', username); //works
     setUser(username);
+  };
+
+  const handleChange = (e) => {
+    console.log('TOGGLE VALUE', e.target.value);
+    setPieDataType(e.target.value);
   };
 
   return (
@@ -47,7 +55,26 @@ const UserHeader = ({categoryTotal, userData, allUsers, setUser, setModal}) => {
         <span>$ {Math.round((userData.monthly_income - userData.total_expenses) / 4 * 100) / 100}</span>
       </div>
       <div className='user-visual'>
-        <PieChart categoryTotal={categoryTotal}/>
+        <PieChart pieDataType={pieDataType} typeTotal={typeTotal} categoryTotal={categoryTotal}/>
+        <div style={{
+          // border: '1px solid red',
+          marginTop: '20px',
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
+
+        <ToggleButtonGroup
+          sx={{fontColor: 'blue'}}
+          color='success'
+          // value='category'
+          exclusive
+          onChange={handleChange}
+          aria-label="Platform"
+          >
+      <ToggleButton value="category">Category</ToggleButton>
+      <ToggleButton value="type">Type</ToggleButton>
+    </ToggleButtonGroup>
+          </div>
       </div>
     </div>
   )

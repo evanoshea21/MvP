@@ -125,7 +125,7 @@ const APP = () => {
     <div>
       {/* PUT YOUR APP HERE*/}
       <Header />
-      <UserHeader categoryTotal={categoryTotal} setModal={setModal} userData={userData} allUsers={allUsers} setUser={setUsername}/>
+      <UserHeader typeTotal={typeTotal} categoryTotal={categoryTotal} setModal={setModal} userData={userData} allUsers={allUsers} setUser={setUsername}/>
       <div id='expense-box'>
         <Expenses sort={sort} setSort={setSort} username={username} setExpenses={setExpenses} getSetUserData={getSetUserData} getSetExpenses={getSetExpenses} expenses={expenses} setModal={setModal}/>
         <FinanceSidebar setModal={setModal}/>

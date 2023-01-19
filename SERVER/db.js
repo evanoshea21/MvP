@@ -45,6 +45,15 @@ const Tests = mongoose.model('Tests', mongoose.Schema({
 //   rent_due: 1,
 //   total_expenses: 2575.76,
 // }, function(err) {console.log('inserted user?')});
+// User.create({
+//   username: 'Evan',
+//   monthly_income: 5000,
+//   pay_period: 'bi-weekly',
+//   pay_dates: '1, 14',
+//   housing: 1900,
+//   rent_due: 1,
+//   total_expenses: 1978.33,
+// }, function(err) {console.log('inserted user?')});
 
 // Expense.insertMany([
 //   {
@@ -146,6 +155,44 @@ const Tests = mongoose.model('Tests', mongoose.Schema({
 // });
 // User.deleteMany({});
 
+// Expense.insertMany([
+//     {
+//       username: 'Evan',
+//       title: 'Rent',
+//       category: 'Housing',
+//       type: 'Essential',
+//       due_date: 1,
+//       pay_period: 'monthly',
+//       amount: 1900,
+//       logo: 'image.jpeg',
+//     },
+//     {
+//       username: 'Evan',
+//       title: 'Hulu',
+//       category: 'Subscription',
+//       type: 'Essential',
+//       due_date: 10,
+//       pay_period: 'monthly',
+//       amount: 12.99,
+//       logo: 'image.jpeg',
+//     },
+//     {
+//       username: 'Evan',
+//       title: 'Gas',
+//       category: 'Auto',
+//       type: 'Essential',
+//       due_date: 12,
+//       pay_period: 'monthly',
+//       amount: 65.34,
+//       logo: 'image.jpeg',
+//     },
+// ], function(err) {
+//   if(err) {
+//     console.log(err)
+//   } else {
+//     console.log('INSERTED DOCS')
+//   }
+// });
 
 
 module.exports.users = User;

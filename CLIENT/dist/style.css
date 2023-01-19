@@ -258,3 +258,20 @@ h1, .h1 {
 .finance-utils button{
   font-size: 1rem;
 }
+
+.colorPicker {
+  background-color: #FF6E31;
+
+  /* very bad -- debt, liability */
+  background-color: #a30404;
+ /* bad  */
+  background-color: #f73939;
+/* good  */
+  background-color: #179409;
+/* kinda ok  */
+  background-color: #4cd53d;
+/* middle  */
+  background-color: #e5bd58;
+
+  background-color: #FF6E31;
+}
